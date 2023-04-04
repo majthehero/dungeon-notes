@@ -9,6 +9,33 @@
 
   <body>
 
+    <header>
+      <navbar>
+        Here comes navbar
+      </navbar>
+    </header>
+
+    <article>
+      <h1>Timeline</h1>
+      <div id="timeline-container">
+
+      </div>
+      <hr>
+      <form name="add-note-form">
+        Add item
+        <input type="text" name="note-text">
+        <button hx-post="http://localhost:5000/item" hx-target="#timeline-container">
+          Add
+        </button>
+      </form>
+    </article>
+
+    <footer>
+      <statusbar>
+        Here comes status bar
+      </statusbar>
+    </footer>
+
   </body>
 
 </html>
