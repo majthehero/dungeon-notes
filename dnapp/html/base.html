@@ -2,6 +2,7 @@
 <html>
 
   <head>
+    <title>Dungeon Notes</title>
     <script src="https://unpkg.com/htmx.org@1.8.6"
       integrity="sha384-Bj8qm/6B+71E6FQSySofJOUjA/gq330vEqjFx9LakWybUySyI1IQHwPtbTU7bNwx"
       crossorigin="anonymous"></script>
@@ -15,6 +16,7 @@
       </navbar>
     </header>
 
+    {% %}
     <article>
       <h1>Timeline</h1>
       <div id="timeline-container">
@@ -24,7 +26,7 @@
       <form name="add-note-form">
         Add item
         <input type="text" name="note-text">
-        <button hx-post="http://localhost:5000/item" hx-target="#timeline-container">
+        <button hx-post="http://localhost:5000/item" hx-target="#timeline-container" hx-data="">
           Add
         </button>
       </form>

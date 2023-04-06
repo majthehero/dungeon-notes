@@ -1,5 +1,5 @@
 from pony.orm import *
-
+from flask_login import UserMixin
 
 db = Database()
 
@@ -36,12 +36,8 @@ class Campaign(db.Entity):
     locations = Set(Location)
 
 
-class User(db.Entity):
+class User(db.Entity, UserMixin):
     id = PrimaryKey(int, auto=True)
     masters_campaigns = Set(Campaign, reverse="master")
     plays_campaigns = Set(Campaign, reverse="players")
     authored_notes = Set(Note)
-
-
-db.bind(provider="sqlite", filename="database.sqlite", create_db=True)
-db.generate_mapping(create_tables=True)
