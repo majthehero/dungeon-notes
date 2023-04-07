@@ -1,18 +1,25 @@
-from flask import request
-from flask import Blueprint, request
+from flask import request, redirect, make_response
+from flask import Blueprint, render_template, render_template_string
 from flask_login import login_required
+from flask import current_app as app
 
 api = Blueprint("api", __name__)
 
 
+@api.route("/static/<filename>")
+def static(filename):
+    app.logger.warn("redirect to %s", filename)
+    return redirect("https://unpkg.com/" + filename)
+
+
 @api.route("/home", methods=["GET"])
 @login_required
-def handle_home():
-    return render_template("view.html")
+def home():
+    return render_template("timeline.html")
 
 
 @api.route("/item", methods=["GET", "POST"])
-def handle_item():
+def item():
     if request.method == "GET":
         return "test"
 

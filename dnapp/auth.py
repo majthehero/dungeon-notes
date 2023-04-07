@@ -16,21 +16,22 @@ auth = Blueprint("auth", __name__)
 
 @app.login_manager.user_loader
 def load_user(user_id):
-    user = User.get(lambda u: u.id == user_id)
-    if user:
-        app.logger.info("Success - %s - %s", user.id, user.username)
-    else:
-        app.logger.info("Failed - %s", user_id)
+    with db_session:
+        user = User.get(lambda u: u.id == user_id)
+    # if user:
+    #     app.logger.info("Success - %s - %s", user.id, user.email)
+    # else:
+    #     app.logger.info("Failed - %s", user_id)
     return user
 
 
-@auth.route("/signup", methods=["GET", POST])
-def handle_signup():
+@auth.route("/signup", methods=["GET", "POST"])
+def signup():
     if request.method == "GET":
         return render_template("auth.html")
 
     elif request.method == "POST":
-        username = request.form.get("username")
+        email = request.form.get("email")
         password = request.form.get("password")
         password_1 = request.form.get("password_1")
 
@@ -38,20 +39,22 @@ def handle_signup():
             app.logger.info("signup failed: password doesn't match itself")
             flash("Typo in password.")
             return redirect(url_for("auth.signup"))
-        if User.exists(username=username):
-            app.logger.info("signup failed: username taken")
-            flash("Username already taken.")
+
+        with db_session:
+            taken = User.exists(email=email)
+        if taken:
+            app.logger.info("signup failed: email taken")
+            flash("email already taken.")
             return redirect(url_for("auth.signup"))
 
         else:
             with db_session:
                 user = User(
-                    username=username,
-                    salt=salt,
+                    email=email,
                     password=generate_password_hash(password),
                 )
-            flash("Wellcome, %s", user.username)
-            app.logger.info("signup successfull: welcome - %s", user.username)
+            flash("Wellcome, %s", user.email)
+            app.logger.info("signup successfull: welcome - %s", user.email)
             return redirect(url_for("api.home"))
 
 
@@ -61,20 +64,21 @@ def login():
         return render_template("auth.html")
 
     elif request.method == "POST":
-        username = request.form.get("username")
+        email = request.form.get("email")
         password = request.form.get("password")
-        user = User.get(username=username)
+        with db_session:
+            user = User.get(email=email)
         if (
             user is None
             or not check_password_hash(user.password, password)
             or not login_user(user)
         ):
-            app.logger.info("login failed: %", username)
-            flash("Username and password do not match.")
+            app.logger.info("login failed: %", email)
+            flash("email and password do not match.")
             return redirect(url_for(auth.login))
 
-        app.logger.info("login successfull: %", username)
-        flash("Wellcome back, %s", username)
+        app.logger.info("login successfull: %", email)
+        flash("Wellcome back, %s", email)
         return redirect(url_for("api.home"))
 
 
@@ -88,8 +92,9 @@ def logout():
 # DEBUG
 @auth.route("/debug/users")
 def get_users():
-    users = User.select()
+    with db_session:
+        users = User.select()
     app.logger.info("Listing %s users:", users.count())
     for u in users:
-        app.logger.info("%s", u.username)
+        app.logger.info("%s", u.email)
     return "hello"

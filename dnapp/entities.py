@@ -38,6 +38,8 @@ class Campaign(db.Entity):
 
 class User(db.Entity, UserMixin):
     id = PrimaryKey(int, auto=True)
+    email = Required(str)
+    password = Required(str)
     masters_campaigns = Set(Campaign, reverse="master")
     plays_campaigns = Set(Campaign, reverse="players")
     authored_notes = Set(Note)

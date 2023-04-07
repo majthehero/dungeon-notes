@@ -8,7 +8,7 @@ from dnapp.entities import db, Note, Location, Tag, Campaign, User
 
 
 app = Flask(__name__)
-
+app.config["SECRET_KEY"] = "wohoo"
 db.bind(provider="sqlite", filename="database.sqlite", create_db=True)
 db.generate_mapping(create_tables=True)
 

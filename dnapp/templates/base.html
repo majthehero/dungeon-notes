@@ -3,7 +3,7 @@
 
   <head>
     <title>Dungeon Notes</title>
-    <script src="https://unpkg.com/htmx.org@1.8.6"
+    <script src="{{ url_for('api.static', filename='htmx.org@1.8.6') }}"
       integrity="sha384-Bj8qm/6B+71E6FQSySofJOUjA/gq330vEqjFx9LakWybUySyI1IQHwPtbTU7bNwx"
       crossorigin="anonymous"></script>
   </head>
@@ -15,10 +15,10 @@
         <h1>Dungeon Notes</h1>
         <ul>
           {% if g.user %}
-          <li><span>{{ g.user['username'] }}</span></li>
+          <li><span>{{ g.user['email'] }}</span></li>
           <li><a href="{{ url_for('auth.logout') }}">Log Out</a></li>
           {% else %}
-          <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+          <li><a href="{{ url_for('auth.signup') }}">Register</a></li>
           <li><a href="{{ url_for('auth.login') }}">Log In</a></li>
           {% endif %}
         </ul>
@@ -26,6 +26,8 @@
     </header>
 
     <article class="content">
+      {% block content %}
+      {% endblock %}
     </article>
 
     <footer>
