@@ -1,0 +1,10 @@
+<h1>Timeline</h1>
+<div id="timeline-container">
+</div>
+<hr>
+<form name="add-note-form">
+  <input type="text" name="note-text">
+  <button hx-post="http://localhost:5000/item" hx-target="#timeline-container">
+    Add
+  </button>
+</form>

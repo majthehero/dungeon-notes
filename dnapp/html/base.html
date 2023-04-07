@@ -11,29 +11,27 @@
   <body>
 
     <header>
-      <navbar>
-        Here comes navbar
-      </navbar>
+      <nav>
+        <h1>Dungeon Notes</h1>
+        <ul>
+          {% if g.user %}
+          <li><span>{{ g.user['username'] }}</span></li>
+          <li><a href="{{ url_for('auth.logout') }}">Log Out</a></li>
+          {% else %}
+          <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+          <li><a href="{{ url_for('auth.login') }}">Log In</a></li>
+          {% endif %}
+        </ul>
+      </nav>
     </header>
 
-    {% %}
-    <article>
-      <h1>Timeline</h1>
-      <div id="timeline-container">
-
-      </div>
-      <hr>
-      <form name="add-note-form">
-        Add item
-        <input type="text" name="note-text">
-        <button hx-post="http://localhost:5000/item" hx-target="#timeline-container" hx-data="">
-          Add
-        </button>
-      </form>
+    <article class="content">
     </article>
 
     <footer>
       <statusbar>
+        {% block status %}
+        {% endblock %}
         Here comes status bar
       </statusbar>
     </footer>

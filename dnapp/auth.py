@@ -27,12 +27,17 @@ def load_user(user_id):
 @auth.route("/signup", methods=["GET", POST])
 def handle_signup():
     if request.method == "GET":
-        return render_template("signup.html")
+        return render_template("auth.html")
 
     elif request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
+        password_1 = request.form.get("password_1")
 
+        if password != password_1:
+            app.logger.info("signup failed: password doesn't match itself")
+            flash("Typo in password.")
+            return redirect(url_for("auth.signup"))
         if User.exists(username=username):
             app.logger.info("signup failed: username taken")
             flash("Username already taken.")
@@ -47,13 +52,13 @@ def handle_signup():
                 )
             flash("Wellcome, %s", user.username)
             app.logger.info("signup successfull: welcome - %s", user.username)
-            return redirect(url_for("auth.login"))
+            return redirect(url_for("api.home"))
 
 
 @auth.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "GET":
-        return render_template("login.html")
+        return render_template("auth.html")
 
     elif request.method == "POST":
         username = request.form.get("username")
