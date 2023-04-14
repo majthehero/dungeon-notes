@@ -13,14 +13,12 @@
     <header>
       <nav>
         <h1>Dungeon Notes</h1>
-        <ul>
-          {% if g.user %}
-          <li><span>{{ g.user['email'] }}</span></li>
-          <li><a href="{{ url_for('auth.logout') }}">Log Out</a></li>
-          {% else %}
-          <li><a href="{{ url_for('auth.signup') }}">Register</a></li>
-          <li><a href="{{ url_for('auth.login') }}">Log In</a></li>
-          {% endif %}
+        {% if current_user %}
+        <button><a href="{{ url_for('auth.logout') }}">Log Out</a></button>
+        {% else %}
+        <button href="{{ url_for('auth.signup') }}">Register</button>
+        <button href="{{ url_for('auth.login') }}">Log In</button>
+        {% endif %}
         </ul>
       </nav>
     </header>
@@ -32,9 +30,12 @@
 
     <footer>
       <statusbar>
-        {% block status %}
-        {% endblock %}
-        Here comes status bar
+        {% if current_user %}
+        <span>{{current_user.email}}</span>
+        {% endif %}
+        {% for message in get_flashed_messages() %}
+        <div class="flash">{{ note }}</div>
+        {% endfor %}
       </statusbar>
     </footer>
 

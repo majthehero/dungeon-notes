@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Campaigns</h1>
+<div id="campaigns-list">
+  <!-- TODO replace with rendered template: -->
+  {% for campaign in dms_campaigns %}
+  <h3>
+    <a href="{{ url_for('api.timeline', id=campaign.id) }}">
+      {{campaign.title}}
+    </a>
+    <span hx-delete="{{ url_for('api.campaign', id=campaign.id) }}" hx-swap="delete">
+      Delete
+    </span>"
+  </h3>
+  {% endfor %}
+
+  {% for campaign in plays_campaigns %}
+  <h3><a href="{{url_for('api.timeline', id=campaign.id)}}">{{campaign.title}}</a></h3>
+  {% endfor %}
+</div>
+<hr>
+<form>
+  <input type="text" name="title">
+  <input type="text" name="players">
+  <button hx-post="{{url_for('api.campaign')}}" hx-target="#campaigns-list" hx-swap="afterbegin">
+    Create and invite players!
+  </button>
+</form>
+{% endblock %}

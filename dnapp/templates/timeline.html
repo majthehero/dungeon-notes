@@ -2,11 +2,24 @@
 {% block content %}
 <h1>Timeline</h1>
 <div id="timeline-container">
+  {% for note in notes %}
+  <div class="timeline-note">
+    <p>
+      <span>{{note.time}}:</span>
+      <span>{{note.text}}</span>
+    </p>
+    <p>
+      {{note.author.email}}
+    </p>
+  </div>
+  {% endfor %}
 </div>
 <hr>
 <form name="add-note-form">
+  <input type="text" name="note-campaign-id" value="{{ campaign_id }}" hidden="True">
   <input type="text" name="note-text">
-  <button hx-post="http://localhost:5000/item" hx-target="#timeline-container">
+  <input type="text" name="note-tags">
+  <button hx-post="http://localhost:5000/item" hx-target="#timeline-container" hx-swap="afterbegin">
     Add
   </button>
 </form>

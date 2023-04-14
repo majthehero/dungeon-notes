@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
-<form name="login">
+<form action="http://localhost:5000/login" method="post">
   <input type="email" name="email">
   <input type="password" name="password">
-  <button hx-post="http://localhost:5000/login" hx-target="">Log in</button>
+  <button type="submit">Log in</button>
 </form>
 <hr>
-<form name="signup">
+<form action="http://localhost:5000/signup" method="post">
   <input type="email" name="email">
   <input type="password" name="password">
   <input type="password" name="password_1">
-  <button hx-post="http://localhost:5000/signup">Sign up</button>
+  <button type="submit">Sign up</button>
 </form>
 {% endblock %}

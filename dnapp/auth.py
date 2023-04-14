@@ -18,10 +18,6 @@ auth = Blueprint("auth", __name__)
 def load_user(user_id):
     with db_session:
         user = User.get(lambda u: u.id == user_id)
-    # if user:
-    #     app.logger.info("Success - %s - %s", user.id, user.email)
-    # else:
-    #     app.logger.info("Failed - %s", user_id)
     return user
 
 
@@ -53,33 +49,31 @@ def signup():
                     email=email,
                     password=generate_password_hash(password),
                 )
-            flash("Wellcome, %s", user.email)
-            app.logger.info("signup successfull: welcome - %s", user.email)
-            return redirect(url_for("api.home"))
+                flash("Wellcome, %s, please log in.", user.email)
+                app.logger.info("signup successfull: welcome - %s", user.email)
+                return redirect(url_for("auth.login"))
+    app.logger.warn("LOL - auth.signup")
+    return "LOL - auth.signup"
 
 
 @auth.route("/login", methods=["GET", "POST"])
 def login():
-    if request.method == "GET":
-        return render_template("auth.html")
-
-    elif request.method == "POST":
+    if request.method == "POST":
         email = request.form.get("email")
         password = request.form.get("password")
         with db_session:
             user = User.get(email=email)
-        if (
-            user is None
-            or not check_password_hash(user.password, password)
-            or not login_user(user)
-        ):
-            app.logger.info("login failed: %", email)
+        if user is None or not check_password_hash(user.password, password):
+            app.logger.info("login failed: %s", email)
             flash("email and password do not match.")
-            return redirect(url_for(auth.login))
+            return redirect(url_for("auth.login"))
 
-        app.logger.info("login successfull: %", email)
+        app.logger.info("login successfull: %s", email)
         flash("Wellcome back, %s", email)
-        return redirect(url_for("api.home"))
+
+        login_user(user)
+        return redirect(url_for("api.campaign"))
+    return render_template("auth.html")
 
 
 @auth.route("/logout")
@@ -94,7 +88,7 @@ def logout():
 def get_users():
     with db_session:
         users = User.select()
-    app.logger.info("Listing %s users:", users.count())
-    for u in users:
-        app.logger.info("%s", u.email)
+        app.logger.info("Listing %s users:", users.count())
+        for u in users:
+            app.logger.info("%s", u.email)
     return "hello"
