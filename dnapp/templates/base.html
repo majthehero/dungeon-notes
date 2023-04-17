@@ -6,39 +6,44 @@
     <script src="{{ url_for('api.static', filename='htmx.org@1.8.6') }}"
       integrity="sha384-Bj8qm/6B+71E6FQSySofJOUjA/gq330vEqjFx9LakWybUySyI1IQHwPtbTU7bNwx"
       crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/selekkt-skelet@latest/css/skelet.min.css">
   </head>
 
   <body>
+    <div id="app">
 
-    <header>
-      <nav>
-        <h1>Dungeon Notes</h1>
-        {% if current_user %}
-        <button><a href="{{ url_for('auth.logout') }}">Log Out</a></button>
-        {% else %}
-        <button href="{{ url_for('auth.signup') }}">Register</button>
-        <button href="{{ url_for('auth.login') }}">Log In</button>
-        {% endif %}
-        </ul>
-      </nav>
-    </header>
+      <header>
+        <h1 class="logo">
+          Dungeon Notes
+        </h1>
+        <nav>
+          {% if current_user %}
+          <button><a href="{{ url_for('auth.logout') }}">Log Out</a></button>
+          {% else %}
+          <button href="{{ url_for('auth.signup') }}">Register</button>
+          <button href="{{ url_for('auth.login') }}">Log In</button>
+          {% endif %}
+          </ul>
+        </nav>
+      </header>
 
-    <article class="content">
-      {% block content %}
-      {% endblock %}
-    </article>
+      <article class="content">
+        {% block content %}
+        {% endblock %}
+      </article>
 
-    <footer>
-      <statusbar>
-        {% if current_user %}
-        <span>{{current_user.email}}</span>
-        {% endif %}
-        {% for message in get_flashed_messages() %}
-        <div class="flash">{{ note }}</div>
-        {% endfor %}
-      </statusbar>
-    </footer>
-
+      <footer>
+        <statusbar>
+          {% if current_user %}
+          <span>{{current_user.email}}</span>
+          {% endif %}
+          {% for message in get_flashed_messages() %}
+          <div class="flash">{{ note }}</div>
+          {% endfor %}
+        </statusbar>
+      </footer>
+    </div>
   </body>
 
 </html>
