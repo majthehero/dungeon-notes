@@ -1,15 +1,28 @@
 {% extends "base.html" %}
 {% block content %}
-<form action="http://localhost:5000/login" method="post">
-  <input type="email" name="email">
-  <input type="password" name="password">
-  <button type="submit">Log in</button>
-</form>
+<x-grid columns=7>
+  <x-cell span=2-6>
+    <form action="http://localhost:5000/login" method="post">
+      <label for="email">email</label>
+      <input type="email" name="email">
+      <label for="password">password</label>
+      <input type="password" name="password">
+      <button type="submit">Log in</button>
+    </form>
+  </x-cell>
+</x-grid>
 <hr>
-<form action="http://localhost:5000/signup" method="post">
-  <input type="email" name="email">
-  <input type="password" name="password">
-  <input type="password" name="password_1">
-  <button type="submit">Sign up</button>
-</form>
+<x-grid columns=7>
+  <x-cell span=2-6>
+    <form action="http://localhost:5000/signup" method="post">
+      <label for="email">email</label>
+      <input type="email" name="email">
+      <label for="password">password</label>
+      <input type="password" name="password">
+      <label for="password_1">reppeat password</label>
+      <input type="password" name="password_1">
+      <button type="submit">Sign up</button>
+    </form>
+  </x-cell>
+</x-grid>
 {% endblock %}

@@ -8,6 +8,7 @@ from dnapp.entities import db, Note, Location, Tag, Campaign, User
 
 
 app = Flask(__name__)
+
 app.config["SECRET_KEY"] = "wohoo"
 db.bind(provider="sqlite", filename="database.sqlite", create_db=True)
 db.generate_mapping(create_tables=True)
@@ -23,5 +24,13 @@ with app.app_context():
     from dnapp.api import api
 
     app.register_blueprint(api)
+
+    from dnapp.campaign import campaign_bp
+
+    app.register_blueprint(campaign_bp)
+
+    from dnapp.timeline import timeline_bp
+
+    app.register_blueprint(timeline_bp)
 
 CORS(app)

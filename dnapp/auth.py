@@ -49,13 +49,14 @@ def signup():
                     email=email,
                     password=generate_password_hash(password),
                 )
-                flash("Wellcome, %s, please log in.", user.email)
+                flash(f"Wellcome, {user.email}, please log in.")
                 app.logger.info("signup successfull: welcome - %s", user.email)
                 return redirect(url_for("auth.login"))
     app.logger.warn("LOL - auth.signup")
     return "LOL - auth.signup"
 
 
+@auth.route("/", methods=["GET"])
 @auth.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -72,7 +73,7 @@ def login():
         flash("Wellcome back, %s", email)
 
         login_user(user)
-        return redirect(url_for("api.campaign"))
+        return redirect(url_for("campaign_bp.campaign"))
     return render_template("auth.html")
 
 
@@ -81,14 +82,3 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for("auth.login"))
-
-
-# DEBUG
-@auth.route("/debug/users")
-def get_users():
-    with db_session:
-        users = User.select()
-        app.logger.info("Listing %s users:", users.count())
-        for u in users:
-            app.logger.info("%s", u.email)
-    return "hello"

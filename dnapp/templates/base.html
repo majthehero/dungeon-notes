@@ -3,47 +3,67 @@
 
   <head>
     <title>Dungeon Notes</title>
-    <script src="{{ url_for('api.static', filename='htmx.org@1.8.6') }}"
-      integrity="sha384-Bj8qm/6B+71E6FQSySofJOUjA/gq330vEqjFx9LakWybUySyI1IQHwPtbTU7bNwx"
+    <script src="{{ url_for('api.static', filename='htmx') }}"
       crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/selekkt-skelet@latest/css/skelet.min.css">
+    <script src="{{ url_for('api.static', filename='main.js') }}"
+      crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="{{ url_for('api.static', filename='dark-style.css') }}">
+    <!-- <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/selekkt-skelet@latest/css/skelet.min.css"> -->
   </head>
 
   <body>
-    <div id="app">
-
+    <div id="container">
       <header>
-        <h1 class="logo">
+        <h1>
           Dungeon Notes
         </h1>
         <nav>
           {% if current_user %}
-          <button><a href="{{ url_for('auth.logout') }}">Log Out</a></button>
+          <span>
+            <a href="{{ url_for('auth.logout') }}">
+              Log Out
+            </a>
+          </span>
           {% else %}
-          <button href="{{ url_for('auth.signup') }}">Register</button>
-          <button href="{{ url_for('auth.login') }}">Log In</button>
+          <span>
+            <a href="{{ url_for('auth.signup') }}">
+              Register
+            </a>
+          </span>
+          <span>
+            <a href="{{ url_for('auth.login') }}">
+              Log In
+            </a>
+          </span>
           {% endif %}
-          </ul>
+          {% for tool in tools %}
+          {{ tool | safe }}
+          {% endfor %}
         </nav>
       </header>
 
-      <article class="content">
+      <article>
         {% block content %}
         {% endblock %}
       </article>
 
       <footer>
-        <statusbar>
-          {% if current_user %}
-          <span>{{current_user.email}}</span>
-          {% endif %}
-          {% for message in get_flashed_messages() %}
-          <div class="flash">{{ note }}</div>
-          {% endfor %}
-        </statusbar>
+        {% if current_user %}
+        <span class="uname">
+          hello, {{current_user.email}}
+        </span>
+        {% endif %}
+        {% for message in get_flashed_messages() %}
+        <span class="flash">
+          {{ note | safe }}
+        </span>
+        {% endfor %}
       </footer>
+
     </div>
+
   </body>
 
 </html>

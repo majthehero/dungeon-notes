@@ -1,4 +1,13 @@
-from flask import current_app as app
+from flask import (
+    current_app as app,
+    render_template_string,
+    make_response,
+    render_template,
+)
+from flask_login import current_user
+from pony.orm import db_session
+from dnapp.entities import *
+from dnapp.templates import template_strings as TS
 
 
 def parse_players(players: str):
@@ -12,3 +21,20 @@ def parse_players(players: str):
         valid_emails.append(email.strip())
     app.logger.warn("valid emails: %s", valid_emails)
     return valid_emails
+
+
+def get_tools(page: ""):
+    if page == "timeline":
+        return [render_template_string(TS.add_location_tool)]
+    else:
+        return []
+
+
+def get_campaigns_by_user():
+    user = current_user
+    with db_session:
+        dms_campaigns = Campaign.select(lambda campaign: campaign.dm == current_user)
+        plays_campaigns = Campaign.select(
+            lambda campaign: current_user in campaign.players
+        )
+        return list(dms_campaigns), list(plays_campaigns)

@@ -1,0 +1,81 @@
+.container {
+  height: 100vh;
+  width: 100vh;
+  overflow: hidden;
+}
+
+header {
+  background-color: black;
+  color: white;
+  padding: 2rem;
+  position: fixed;
+  top: 0;
+  height: 8rem;
+  width: 100%;
+}
+
+article {
+  background-color: white;
+  color: black;
+  overflow: hidden;
+  position: absolute;
+  top: 12rem;
+  bottom: 4rem;
+  width: 100%;
+}
+.row {
+  height: 100%;
+}
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+  max-height: inherit;
+}
+.column {
+  float: left;
+  max-height: inherit;
+}
+.column.timeline {
+  width: 30%;
+  height: 100%;
+  overflow: scroll;
+}
+.column.map {
+  width: 70%;
+  height: 100%;
+}
+@media screen and (max-width: 720px) {
+  .column.column.timeline, .column.column.map {
+    width: 100%;
+  }
+}
+img {
+  max-height: 100%;
+  max-width: 100%;
+}
+footer {
+  background-color: black;
+  color: white;
+  padding: 1rem;
+  position: fixed;
+  height: 2rem;
+  bottom: 0;
+  width: 100%;
+}
+
+
+form.bottom {
+  bottom: 0;
+  position: absolute;
+  height: 5rem;
+  width: inherit; 
+  background-color: aliceblue;
+}
+#timeline-container {
+  height: inherit;
+  overflow:scroll;
+}
+.timeline-note {
+
+}

@@ -38,6 +38,8 @@ class Campaign(db.Entity):
     nicknames = Set("Nickname", reverse="campaign")
     notes = Set(Note)
     locations = Set(Location)
+    title = Required(str)
+    teaser = Optional(str)
 
 
 class Nickname(db.Entity):

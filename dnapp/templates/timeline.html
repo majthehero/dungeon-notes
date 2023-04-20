@@ -1,26 +1,36 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Timeline</h1>
-<div id="timeline-container">
-  {% for note in notes %}
-  <div class="timeline-note">
-    <p>
-      <span>{{note.time}}:</span>
-      <span>{{note.text}}</span>
-    </p>
-    <p>
-      {{note.author.email}}
-    </p>
+<div class="row">
+  <div id="timeline-column" class="column timeline">
+    <h1>Timeline</h1>
+
+    <div id="timeline-container">
+      {% for note in notes %}
+      {{ note | safe }}
+      {% endfor %}
+    </div>
+
+    <form class="bottom" name="add-note-form">
+      <input type="text" name="note-campaign-id" value="{{ campaign_id }}"
+        hidden="True">
+      <label for="note-text">note</label>
+      <textarea type="text" style="resize: vertical;"
+        name="note-text"></textarea>
+      <label for="note-text">tags</label>
+      <input type="text" name="note-tags">
+      <button hx-post="http://localhost:5000/item"
+        hx-target="#timeline-container" hx-swap="beforeend">
+        Add
+      </button>
+    </form>
   </div>
-  {% endfor %}
+  <div class="column map">
+    <img
+      src=" https://cdnb.artstation.com/p/assets/images/images/018/132/103/large/bubblegum-buddha-asset.jpg?1558449724"
+      hx-trigger="click"
+      hx-vals="js:{clickCoords: imageCoordsFromClickEvent(event)}"
+      hx-post="http:localhost:5000/location" />
+  </div>
 </div>
-<hr>
-<form name="add-note-form">
-  <input type="text" name="note-campaign-id" value="{{ campaign_id }}" hidden="True">
-  <input type="text" name="note-text">
-  <input type="text" name="note-tags">
-  <button hx-post="http://localhost:5000/item" hx-target="#timeline-container" hx-swap="beforeend">
-    Add
-  </button>
-</form>
+
 {% endblock %}
