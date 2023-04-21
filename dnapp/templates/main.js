@@ -6,5 +6,5 @@ function imageCoordsFromClickEvent(event) {
   cScale = cH / nH;
   rX = pxX / cScale;
   rY = pxY / cScale;
-  return { 'rX': rX, 'rY': rY }
+  return { 'img_x': rX, 'img_y': rY, 'scale': cScale }
 }

@@ -3,7 +3,7 @@
 dms_campaign_item = """
 <div id="c_id_{{ campaign.id }}">
   <h3>
-    <a href="{{ url_for('timeline.timeline', id=campaign.id) }}">
+    <a href="{{ url_for('timeline_bp.timeline', id=campaign.id) }}">
       {{ campaign.title }}
     </a>
   </h3>
@@ -48,8 +48,10 @@ timeline_note = """
 add_location_tool = """
 <span>
   <button
-    hx-get="http://localhost/location/form"
-    hx-swap="timeline-column">add location</button>
+      type="checkbox"
+      hx-get="http://localhost:5000/location/add/1">
+    add location
+  </button>
 </span>
 """
 
@@ -59,7 +61,12 @@ add_location_form = """
   <input type="text" />
   <label for="description" /> description </label>
   <textarea type="text" name="description"></textarea>
-  <button for="coordinates" />
-  
+  <label for="x"> x on img </label>
+  <input name="x" value="{{x}}" disabled="True"></input>
+  <label for="y"> y on img </label>
+  <input name="y" value="{{y}}" disabled="True"></input>
+  <label for="x"> img to scrn scale </label>
+  <input name="scale" value="{{scale}}" disabled="True"></input>
+  <submit hx-post="http://localhost:5000/location/add/2">Button</submit>
 </div>
 """

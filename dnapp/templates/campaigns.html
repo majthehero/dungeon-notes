@@ -1,26 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
-<x-grid columns=7>
-  <x-grid span=2-6>
-    <h1>Campaigns</h1>
-    <div id="campaigns-list">
-      {% for campaign in campaigns %}
-      {{ campaign | safe }}
-      {% endfor %}
-    </div>
-    <hr>
-    <form>
-      <label for="title">title</label>
-      <input type="text" name="title">
-      <label for="teaser">teaser text</label>
-      <textarea type="text" name="teaser"></textarea>
-      <label for="players">invite players</label>
-      <input type="text" name="players">
-      <button hx-post="{{url_for('campaign_bp.campaign')}}"
-        hx-target="#campaigns-list" hx-swap="afterbegin">
-        Create and invite players!
-      </button>
-    </form>
-  </x-grid>
-</x-grid>
+<h1>Campaigns</h1>
+<div id="campaigns-list">
+  {% for campaign in campaigns %}
+  {{ campaign | safe }}
+  {% endfor %}
+</div>
+<hr>
+<form>
+  <label for="title">title</label>
+  <input type="text" name="title">
+  <label for="teaser">teaser text</label>
+  <textarea type="text" name="teaser"></textarea>
+  <label for="players">invite players</label>
+  <input type="text" name="players">
+  <button hx-post="{{url_for('campaign_bp.campaign')}}"
+    hx-target="#campaigns-list" hx-swap="afterbegin">
+    Create and invite players!
+  </button>
+</form>
 {% endblock %}

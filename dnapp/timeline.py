@@ -1,3 +1,4 @@
+import json
 from flask import (
     current_app as app,
     Blueprint,
@@ -14,7 +15,7 @@ from dnapp import db, utils
 from dnapp.templates import template_strings as TS
 
 
-timeline_bp = Blueprint("timeline", __name__)
+timeline_bp = Blueprint("timeline_bp", __name__)
 
 
 @timeline_bp.route("/timeline/<id>", methods=["GET"])
@@ -24,10 +25,7 @@ def timeline(id):
     with db_session:
         notes = list(Note.select(lambda note: note.campaign.id == id))
         notes_rendered = [
-            render_template_string(
-                TS.timeline_note, note=note, tools=utils.get_tools("timeline")
-            )
-            for note in notes
+            render_template_string(TS.timeline_note, note=note) for note in notes
         ]
         return make_response(
             render_template(
@@ -84,3 +82,24 @@ def item():
         app.logger.info("render string is: %s", render_string)
         return make_response(render_string, 200)
     return make_response("", 500)
+
+
+@timeline_bp.route("/location/add/1", methods=["POST"])
+@login_required
+def add_location():
+    click_coords = json.loads(request.form.get("clickCoords"))
+    x = click_coords["img_x"]
+    y = click_coords["img_y"]
+    scale = click_coords["scale"]
+    return render_template_string(TS.add_location_form, x=x, y=y, scale=scale)
+
+
+@timeline_bp.route("/location/add/2", methods=["POST"])
+@login_required
+def add_location_2():
+    x = request.form.get("x")
+    y = request.form.get("y")
+    scale = request.form.get("scale")
+    name = request.form.get("name")
+    description = request.form.get("description")
+    return "happy"
