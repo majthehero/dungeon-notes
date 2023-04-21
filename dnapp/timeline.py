@@ -102,4 +102,4 @@ def add_location_2():
     scale = request.form.get("scale")
     name = request.form.get("name")
     description = request.form.get("description")
-    return "happy"
+    return "DONE"

@@ -45,18 +45,9 @@ timeline_note = """
 </div>
 """
 
-add_location_tool = """
-<span>
-  <button
-      type="checkbox"
-      hx-get="http://localhost:5000/location/add/1">
-    add location
-  </button>
-</span>
-"""
 
 add_location_form = """
-<div id="location-column" class="column timeline">
+<div id="location-form" class="column timeline">
   <label for="name"> name </label>
   <input type="text" />
   <label for="description" /> description </label>
@@ -67,6 +58,8 @@ add_location_form = """
   <input name="y" value="{{y}}" disabled="True"></input>
   <label for="x"> img to scrn scale </label>
   <input name="scale" value="{{scale}}" disabled="True"></input>
-  <submit hx-post="http://localhost:5000/location/add/2">Button</submit>
+  <input type="button" hx-post="http://localhost:5000/location/add/2"
+      hx-target="#location-form"
+      hx-swap="delete">Button</submit>
 </div>
 """

@@ -25,7 +25,7 @@ def parse_players(players: str):
 
 def get_tools(page: ""):
     if page == "timeline":
-        return [render_template_string(TS.add_location_tool)]
+        return []
     else:
         return []
 
