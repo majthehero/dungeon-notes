@@ -18,7 +18,7 @@
         name="note-text"></textarea>
       <label for="note-text">tags</label>
       <input type="text" name="note-tags">
-      <button hx-post="http://localhost:5000/item"
+      <button hx-post="https://dungeon-notes.herokuapp.com/item"
         hx-target="#timeline-container" hx-swap="beforeend">
         Add
       </button>
@@ -29,7 +29,8 @@
       src=" https://cdnb.artstation.com/p/assets/images/images/018/132/103/large/bubblegum-buddha-asset.jpg?1558449724"
       hx-trigger="click"
       hx-vals="js:{clickCoords: imageCoordsFromClickEvent(event)}"
-      hx-post="http://localhost:5000/location/add/1" hx-swap="beforebegin" />
+      hx-post="https://dungeon-notes.herokuapp.com/location/add/1"
+      hx-swap="beforebegin" />
   </div>
 </div>
 

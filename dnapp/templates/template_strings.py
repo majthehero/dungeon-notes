@@ -57,7 +57,7 @@ add_location_form = """
   <input name="y" value="{{y}}" hidden="True"></input>
   <input name="scale" value="{{scale}}" hidden="True"></input>
   <input name="campaign_id" value="{{campaign_id}}" hidden="True"></input>
-  <input type="button" hx-post="http://localhost:5000/location/add/2"
+  <input type="button" hx-post="https://dungeon-notes.herokuapp.com/location/add/2"
       hx-target="#location-form"
       hx-swap="delete">Button</submit>
 </div>
