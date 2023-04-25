@@ -1,2 +1,6 @@
 venv/
 .vscode/
+.code
+dnapp/__pycache__
+dnapp/templates/__pycache__
+database.sqlite

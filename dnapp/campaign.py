@@ -4,11 +4,12 @@ from flask import (
     request,
     render_template_string,
     render_template,
+    make_response,
 )
 from flask_login import login_required, current_user
 from pony.orm import db_session
 
-from dnapp.entities import User
+from dnapp.entities import *
 from dnapp import db, utils
 from dnapp.templates import template_strings as TS
 
@@ -68,8 +69,8 @@ def handle_campaign_post(title, player_emails, teaser):
         for player in player_emails:
             if not User.exists(lambda user: user.email == player):
                 emails_to_send.append(player)
-
-        send_invite_email(current_user, emails_to_send, campaign)
+        # TODO link to a gmail account and set up mailing
+        # send_invite_email(current_user, emails_to_send, campaign)
     return make_response(
         render_template_string(TS.dms_campaign_item, campaign=campaign)
     )

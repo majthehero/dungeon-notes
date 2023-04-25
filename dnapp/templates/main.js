@@ -1,5 +1,5 @@
 function imageCoordsFromClickEvent(event) {
-  pxX = event.x - event.target.offsetLeft;
+  pxX = event.x - event.offsetLeft;
   pxY = event.layerY;
   cH = event.srcElement.clientHeight;
   nH = event.srcElement.naturalHeight;

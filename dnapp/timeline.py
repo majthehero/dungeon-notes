@@ -10,7 +10,7 @@ from flask import (
 from flask_login import login_required, current_user
 from pony.orm import db_session
 
-from dnapp.entities import *
+from dnapp.entities import User, Campaign, Note, Location
 from dnapp import db, utils
 from dnapp.templates import template_strings as TS
 
@@ -90,8 +90,12 @@ def add_location():
     click_coords = json.loads(request.form.get("clickCoords"))
     x = click_coords["img_x"]
     y = click_coords["img_y"]
+    campaign_id = request.form.get("campaign_id")
+    app.logger.debug("campaign id in add_loca_1 : %s", campaign_id)
     scale = click_coords["scale"]
-    return render_template_string(TS.add_location_form, x=x, y=y, scale=scale)
+    return render_template_string(
+        TS.add_location_form, x=x, y=y, scale=scale, campaign_id=campaign_id
+    )
 
 
 @timeline_bp.route("/location/add/2", methods=["POST"])
@@ -102,4 +106,9 @@ def add_location_2():
     scale = request.form.get("scale")
     name = request.form.get("name")
     description = request.form.get("description")
+    campaign_id = request.form.get("campaign_id")
+    app.logger.debug("add loc 2 got campaign id %s", campaign_id)
+    with db_session:
+        camp = Campaign[campaign_id]
+        Location(notes=set(), x=x, y=y, campaign=camp, tags=est())
     return "DONE"

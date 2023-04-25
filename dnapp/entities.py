@@ -18,8 +18,8 @@ class Note(db.Entity):
 class Location(db.Entity):
     id = PrimaryKey(int, auto=True)
     notes = Set(Note)
-    coord_x = Required(float)
-    coord_y = Required(float)
+    x = Required(float)
+    y = Required(float)
     tags = Set("Tag")
     campaign = Required("Campaign")
 

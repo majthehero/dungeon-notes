@@ -52,12 +52,11 @@ add_location_form = """
   <input type="text" />
   <label for="description" /> description </label>
   <textarea type="text" name="description"></textarea>
-  <label for="x"> x on img </label>
-  <input name="x" value="{{x}}" disabled="True"></input>
-  <label for="y"> y on img </label>
-  <input name="y" value="{{y}}" disabled="True"></input>
-  <label for="x"> img to scrn scale </label>
-  <input name="scale" value="{{scale}}" disabled="True"></input>
+  
+  <input name="x" value="{{x}}" hidden="True"></input>
+  <input name="y" value="{{y}}" hidden="True"></input>
+  <input name="scale" value="{{scale}}" hidden="True"></input>
+  <input name="campaign_id" value="{{campaign_id}}" hidden="True"></input>
   <input type="button" hx-post="http://localhost:5000/location/add/2"
       hx-target="#location-form"
       hx-swap="delete">Button</submit>

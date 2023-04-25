@@ -1,22 +1,42 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Campaigns</h1>
-<div id="campaigns-list">
-  {% for campaign in campaigns %}
-  {{ campaign | safe }}
-  {% endfor %}
+
+<div class="row">
+  <div id="campaign-list-column" class="column timeline">
+    <h1>Campaigns</h1>
+    <div id="campaigns-list">
+      {% for campaign in campaigns %}
+      {{ campaign | safe }}
+      {% endfor %}
+    </div>
+  </div>
+
+  <div id="campaign-add-form" class="column timeline">
+    <form>
+      <h3>Add campaign</h3>
+      <label for="title">title</label><br>
+      <input type="text" name="title"><br>
+      <label for="teaser">teaser text</label><br>
+      <textarea type="text" name="teaser"></textarea><br>
+      <label for="players">invite players</label><br>
+      <input type="text" name="players"><br>
+      <button hx-post="{{url_for('campaign_bp.campaign')}}"
+        hx-target="#campaigns-list" hx-swap="afterbegin">
+        Done!
+      </button>
+    </form>
+  </div>
+
+  <div id="campaign-add-map" class="column timeline">
+    <form>
+      <label for="map-file">upload map image</label><br>
+      <input type="map-file"><br>
+      <button hx-post="{{url_for('campaign_bp.add_map')}}" hx-swap="outerHTML">
+        Confirm map
+      </button>
+    </form>
+
+  </div>
 </div>
-<hr>
-<form>
-  <label for="title">title</label>
-  <input type="text" name="title">
-  <label for="teaser">teaser text</label>
-  <textarea type="text" name="teaser"></textarea>
-  <label for="players">invite players</label>
-  <input type="text" name="players">
-  <button hx-post="{{url_for('campaign_bp.campaign')}}"
-    hx-target="#campaigns-list" hx-swap="afterbegin">
-    Create and invite players!
-  </button>
-</form>
+
 {% endblock %}

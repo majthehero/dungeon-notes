@@ -20,9 +20,9 @@ Simple application for note taking before and during a game of DnD or other TTRP
 - map view :)
 - timeline view with tags
 - location tags - notes shown on map
-- map edit - add and position base maps in CRS grid
+- map edit - add and position base maps in space
 - ...
 - more?
 
-Maj Smerkol
+Maja S
 2023
