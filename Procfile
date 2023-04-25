@@ -1,1 +1,1 @@
-web: gunicorn dnapp
+web: gunicorn dnapp:app
