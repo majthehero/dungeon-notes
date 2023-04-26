@@ -16,7 +16,7 @@ auth_bp = Blueprint("auth", __name__)
 @app.login_manager.user_loader
 def load_user(user_id):
     with db_session:
-        user = User.get(lambda u: u.id == user_id)
+        user = User[user_id]
     return user
 
 
