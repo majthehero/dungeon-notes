@@ -17,13 +17,13 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 
 with app.app_context():
-    from dnapp.auth import auth
+    from dnapp.auth import auth_bp
 
-    app.register_blueprint(auth)
+    app.register_blueprint(auth_bp)
 
-    from dnapp.api import api
+    from dnapp.api import api_bp
 
-    app.register_blueprint(api)
+    app.register_blueprint(api_bp)
 
     from dnapp.campaign import campaign_bp
 

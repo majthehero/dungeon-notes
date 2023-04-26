@@ -18,19 +18,19 @@
         name="note-text"></textarea>
       <label for="note-text">tags</label>
       <input type="text" name="note-tags">
-      <button hx-post="https://dungeon-notes.herokuapp.com/item"
+      <button hx-post="{{url_for('campaign.note', campaign_id=campaign_id)}}"
         hx-target="#timeline-container" hx-swap="beforeend">
         Add
       </button>
     </form>
   </div>
+
   <div class="column map">
     <img
       src=" https://cdnb.artstation.com/p/assets/images/images/018/132/103/large/bubblegum-buddha-asset.jpg?1558449724"
       hx-trigger="click"
       hx-vals="js:{clickCoords: imageCoordsFromClickEvent(event)}"
-      hx-post="https://dungeon-notes.herokuapp.com/location/add/1"
-      hx-swap="beforebegin" />
+      hx-post="{{url_for('campaign.campaign')}}" hx-swap="beforebegin" />
   </div>
 </div>
 

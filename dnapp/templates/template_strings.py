@@ -3,11 +3,11 @@
 dms_campaign_item = """
 <div id="c_id_{{ campaign.id }}">
   <h3>
-    <a href="{{ url_for('timeline_bp.timeline', id=campaign.id) }}">
+    <a href="{{ url_for('campaign.note', campaign_id=campaign.id) }}">
       {{ campaign.title }}
     </a>
   </h3>
-  <span hx-delete="{{ url_for('campaign_bp.campaign', id=campaign.id, cmd="dm-delete") }}" 
+  <span hx-delete="{{ url_for('campaign.campaign', id=campaign.id, cmd="dm-delete") }}" 
         hx-swap="outerHTML"
         hx-target="#c_id_{{ campaign.id }}">
     Delete campaign
@@ -17,11 +17,11 @@ dms_campaign_item = """
 plays_campaign_item = """
 <div id="c_id_{{ campaign.id }}">
   <h3>
-    <a href="{{ url_for('timeline_bp.timeline', id=campaign.id) }}">
+    <a href="{{ url_for('campaign.note', id=campaign.id) }}">
       {{ campaign.title }}
     </a>
   </h3>
-  <span hx-delete="{{ url_for('campaign_bp.campaign', id=campaign.id, cmd="player-leave") }}" 
+  <span hx-delete="{{ url_for('campaign.campaign', id=campaign.id, cmd="player-leave") }}" 
         hx-swap="outerHTML"
         hx-target="#c_id_{{ campaign.id }}">
     Leave campaign
@@ -57,7 +57,7 @@ add_location_form = """
   <input name="y" value="{{y}}" hidden="True"></input>
   <input name="scale" value="{{scale}}" hidden="True"></input>
   <input name="campaign_id" value="{{campaign_id}}" hidden="True"></input>
-  <input type="button" hx-post="https://dungeon-notes.herokuapp.com/location/add/2"
+  <input type="button" hx-post="{{url_for(campaign.location)}}https://dungeon-notes.herokuapp.com/location/add/2"
       hx-target="#location-form"
       hx-swap="delete">Button</submit>
 </div>

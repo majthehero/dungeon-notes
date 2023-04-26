@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-<form action="https://dungeon-notes.herokuapp.com/login" method="post">
+<form action="{{url_for('auth.login')}}" method="post">
   <label for="email">email</label>
   <input type="email" name="email">
   <label for="password">password</label>
@@ -9,7 +9,7 @@
   <button type="submit">Log in</button>
 </form>
 
-<form action=" https://dungeon-notes.herokuapp.com/signup" method="post">
+<form action="{{url_for('auth.signup')}}" method="post">
   <label for="email">email</label>
   <input type="email" name="email">
   <label for="password">password</label>

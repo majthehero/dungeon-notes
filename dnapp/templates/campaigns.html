@@ -16,11 +16,17 @@
       <h3>Add campaign</h3>
       <label for="title">title</label><br>
       <input type="text" name="title"><br>
+      <label for="map">map</label><br>
+      <input type="file" name="map"
+        accept="image/png, image/gif, image/jpeg, image/svg" hx-on="htmx:validation:validate
+          console.log(this.value.size);
+          false;
+"><br>
       <label for="teaser">teaser text</label><br>
       <textarea type="text" name="teaser"></textarea><br>
       <label for="players">invite players</label><br>
       <input type="text" name="players"><br>
-      <button hx-post="{{url_for('campaign_bp.campaign')}}"
+      <button hx-post="{{url_for('campaign.campaign')}}"
         hx-target="#campaigns-list" hx-swap="afterbegin">
         Done!
       </button>
@@ -28,12 +34,9 @@
   </div>
 
   <div id="campaign-add-map" class="column timeline">
-    <form>
-      <label for="map-file">upload map image</label><br>
+    <form><label for="map-file">upload map image</label><br>
       <input type="map-file"><br>
-      <button hx-post="{{url_for('campaign_bp.add_map')}}" hx-swap="outerHTML">
-        Confirm map
-      </button>
+
     </form>
 
   </div>

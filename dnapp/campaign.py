@@ -13,12 +13,20 @@ from dnapp.entities import *
 from dnapp import db, utils
 from dnapp.templates import template_strings as TS
 
-campaign_bp = Blueprint("campaign_bp", __name__)
+campaign_bp = Blueprint("campaign", __name__)
 
 
 @login_required
-@campaign_bp.route("/campaign", methods=["GET", "POST", "DELETE"])
-def campaign():
+@campaign_bp.route(
+    "/campaign/",
+    defaults={"campaign_id": -1},
+    methods=["GET", "POST", "DELETE"],
+)
+@campaign_bp.route(
+    "/campaign/<campaign_id>",
+    methods=["GET", "POST", "DELETE"],
+)
+def campaign(campaign_id):
     if current_user.is_authenticated:
         if request.method == "GET":  # load page
             return handle_campaign_get()
@@ -37,6 +45,80 @@ def campaign():
     return redirect(url_for("auth.login"))
 
 
+@login_required
+@campaign_bp.route(
+    "/campaign/<campaign_id>/note/",
+    defaults={"note_id": None},
+    methods=["GET", "POST", "DELETE"],
+)
+@campaign_bp.route(
+    "/campaign/<campaign_id>/note/<note_id>",
+    methods=["GET", "POST", "DELETE"],
+)
+def note(campaign_id, note_id):
+    app.logger.debug("note id", note_id)
+    if request.method == "GET":
+        return handle_get_note(campaign_id, note_id)
+    elif request.method == "POST":
+        return handle_post_note(campaign_id, note_id)
+    elif request.method == "DELETE":
+        return handle_delete_note(campaign_id, note_id)
+
+
+# region /campaign/<c_id>/note/<n_id> implementation
+def handle_get_note(c_id, n_id):
+    if n_id is None:
+        with db_session:
+            notes = Campaign[c_id].notes
+            return render_template(
+                "timeline.html",
+                notes=[
+                    render_template_string(TS.timeline_note, note=note)
+                    for note in notes
+                ],
+                campaign_id=c_id,
+            )
+    else:
+        with db_session:
+            note = Note[n_id]
+            return render_template_string(TS.timeline_note, note=note)
+
+
+def handle_post_note(c_id, n_id):
+    if n_id is None:
+        tags = request.form.get("note-tags").split(",")
+        tags = map(lambda tag: tag.strip(), tags)
+        tags = filter(lambda tag: len(tag) > 0, tags)
+
+        with db_session:
+            c = Campaign[c_id]
+            u = User[current_user.id]
+            n = c.notes.create(
+                text=request.form.get("note-text"),
+                date="Prvi-Test-DebugEra",
+                time="Tik Pred Peto",
+                author=u,
+            )
+
+            for tag in tags:
+                if Tag.exists(lambda t: t.text == tag):
+                    Tag.select(lambda t: t.text == tag).first().notes.add(n)
+                else:
+                    app.logger.debug("TAG: '%s'", tag)
+                    Tag(notes=set([n]), text=tag)
+
+            # return render of new tag
+            render_string = render_template_string(TS.timeline_note, note=n)
+            app.logger.info("render string is: %s", render_string)
+            return make_response(render_string, 200)
+        return make_response("", 500)
+
+
+def handle_delete_note(c_id, n_id):
+    pass
+
+
+# region /campaign implementation
 def handle_campaign_get():
     dms_campaigns, plays_campaigns = utils.get_campaigns_by_user()
     campaigns_rendered = [
@@ -49,7 +131,6 @@ def handle_campaign_get():
     return render_template(
         "campaigns.html",
         campaigns=campaigns_rendered,
-        tools=utils.get_tools("campaign"),
     )
 
 

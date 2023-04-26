@@ -15,25 +15,20 @@ from dnapp import db, utils
 from dnapp.templates import template_strings as TS
 
 
-timeline_bp = Blueprint("timeline_bp", __name__)
+timeline_bp = Blueprint("timeline", __name__)
 
 
-@timeline_bp.route("/timeline/<id>", methods=["GET"])
+@timeline_bp.route("/note/<campaign_id>", methods=["GET"])
 @login_required
-def timeline(id):
+def note(campaign_id):
     notes = None
     with db_session:
-        notes = list(Note.select(lambda note: note.campaign.id == id))
+        notes = list(Note.select(lambda note: note.campaign.id == campaign_id))
         notes_rendered = [
             render_template_string(TS.timeline_note, note=note) for note in notes
         ]
         return make_response(
-            render_template(
-                "timeline.html",
-                notes=notes_rendered,
-                campaign_id=id,
-                tools=utils.get_tools("timeline"),
-            ),
+            render_template("timeline.html", notes=notes_rendered, campaign_id=id),
             200,
         )
     flash("Error loading timeline.")
@@ -43,7 +38,7 @@ def timeline(id):
     )
 
 
-@timeline_bp.route("/item", methods=["POST"])
+@timeline_bp.route("/note/<campaign_id>", methods=["POST"])
 @login_required
 def item():
     app.logger.info("got item post request")
