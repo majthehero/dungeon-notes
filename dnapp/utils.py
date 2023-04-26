@@ -33,7 +33,9 @@ def get_tools(page: ""):
 def get_campaigns_by_user():
     user = current_user
     with db_session:
-        dms_campaigns = Campaign.select(lambda campaign: campaign.dm == current_user)
+        dms_campaigns = Campaign.select(
+            campaign for campaign in Campaign if campaign.dm == current_user
+        )
         plays_campaigns = Campaign.select(
             lambda campaign: current_user in campaign.players
         )
