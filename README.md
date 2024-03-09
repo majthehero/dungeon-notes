@@ -93,3 +93,33 @@ Opcije:
 
 
 Sledimo Sefeku proti Altšpijku. 
+
+
+
+## Session 11
+
+prišli do altšpika
+
+- glasni gozog prvi bard 
+--tempelj oz muzej njegovim stvaritvam globoko v votlinah
+
+škratje so kopali pregloboko in prebili ledeno steno skozi katerega je prišel čarobni mraz ki je zmrznil vse. to nam je povedal Krabovog - vzemi z rezervo
+
+sedaj tukaj bivajo goblini, svrinlblini,trolli itd. 
+
+srečal drajderja Breka ki biva na vhodu v altšpik.
+opazoval je Sefeka ki je prišel jn odhajal 1x na leto s karavano. pripeljal je shandril kdaj tudi otroke
+meditiral je globoko v votlinah z otrokoma
+otroke je ponavadi prodal
+
+### altšpik
+- na drugem nadstropju je market
+   - kovači
+   - blister fit in specialni sendviči
+       - slaad Blister dela sendviče 
+- globoki pomrznjeni tuneli 
+oltar prekrit z ledenimi rožami in obglavljenim kipom. Močna magija preplavlja prostor in Rotzehr čuti da ga prostor kliče. 
+
+obnovili smo tempelj glasnemu gozogu prvi med bardi in gib je postal njegov cleric.
+
+Rothzehr je prekinil bond s svojim demonom
