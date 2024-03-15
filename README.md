@@ -98,28 +98,33 @@ Sledimo Sefeku proti Altšpijku.
 
 ## Session 11
 
-prišli do altšpika
+Prišli do Altšpijka. Tam vhod stražijo veliki troli in podobne stvari, ampak se ne vtikajo v karavano Krabavoga in junakov.
+Noter je ogromno spiralno stopnišče v globino, okrog njega pa za srečanje vozov široka spiralna cesta v globino. 
 
-- glasni gozog prvi bard 
---tempelj oz muzej njegovim stvaritvam globoko v votlinah
+**Glasni Gozóg, prvi bard**, ceni svobodo, pomoč drugim, muziko. 
+Tempelj in muzej njegovim stvaritvam, je globoko v Altšpijku, posvečen mu je cel nivo.
 
-škratje so kopali pregloboko in prebili ledeno steno skozi katerega je prišel čarobni mraz ki je zmrznil vse. to nam je povedal Krabovog - vzemi z rezervo
+Krabovog pove, da so "škratje so kopali pregloboko in prebili ledeno steno skozi katerega je prišel čarobni mraz ki je zmrznil vse."
+V mestu sedaj tukaj bivajo goblini, svirfneblini, troli, izgnani drajderji in drow elfi. 
 
-sedaj tukaj bivajo goblini, svrinlblini,trolli itd. 
+Srečali drajderja Breka ki biva na stropu stopnišča blizu vhoda v Altšpijk.
+Opazoval je Sefeka, ki je prihajal in odhajal 1x na leto s karavano, ampak mesečno sam. Pripeljal je šardalin, kdaj je imel sabo otroka.
+Meditiral je globoko v votlinah z otrokom.
+Otroka je ponavadi prodal po meditaciji, ki ga je vedno razočarala, prodal na marketu.
 
-srečal drajderja Breka ki biva na vhodu v altšpik.
-opazoval je Sefeka ki je prišel jn odhajal 1x na leto s karavano. pripeljal je shandril kdaj tudi otroke
-meditiral je globoko v votlinah z otrokoma
-otroke je ponavadi prodal
+### Altšpijk
 
-### altšpik
 - na drugem nadstropju je market
    - kovači
-   - blister fit in specialni sendviči
-       - slaad Blister dela sendviče 
-- globoki pomrznjeni tuneli 
-oltar prekrit z ledenimi rožami in obglavljenim kipom. Močna magija preplavlja prostor in Rotzehr čuti da ga prostor kliče. 
+   - Blisterfit, sendvičarna
+       - slaad Blisterfit dela sendviče
+- globoki tuneli so zmrznjeni komplet in neprehodni, ampak prehodi so skopani do Podzemlja. 
 
-obnovili smo tempelj glasnemu gozogu prvi med bardi in gib je postal njegov cleric.
+### Altšpijk, Tempelj Prvega Barda
 
-Rothzehr je prekinil bond s svojim demonom
+Oltar prekrit z ledenimi rožami, kip obglavljen. 
+Močna magija preplavlja prostor in Rotzehr čuti, da ga prostor kliče. 
+Obnovili smo tempelj Glasnemu Gozogu, Prvemu Bardu, in Gib je postal njegov svečenik.
+S tem je Rothzehr failal svojo nalogo in njegov warloški dobrotnik je jezen in užaljen. Kot kaže, mu ne bo dal več moči.
+
+V templjevi kuhinji pripravijo zdravilo za Rothzehrjevo nespečnost, kazen dobrotnika, ampak bo trajalo da se spočije.
