@@ -128,3 +128,19 @@ Obnovili smo tempelj Glasnemu Gozogu, Prvemu Bardu, in Gib je postal njegov sve�
 S tem je Rothzehr failal svojo nalogo in njegov warloški dobrotnik je jezen in užaljen. Kot kaže, mu ne bo dal več moči.
 
 V templjevi kuhinji pripravijo zdravilo za Rothzehrjevo nespečnost, kazen dobrotnika, ampak bo trajalo da se spočije.
+
+## Session 12
+
+<details><summary>DM:</summary>
+Smo v Altšpijk, v Templju prvega Barda.
+Iz temin spodaj prihajajo Levistusovi asasini, naslednji dan pride Auril z ekipco.
+
+Altšpijk:
+
+- vhod in varovanje
+- market, kovači, Sendvičarna Blisterfit, Sirno Slinjenje Kravoboga, Napoji in Uroki Vešče Vialineje, Sužnjetrgovci Dvergarskih Mojstrov, Torgin Tunelski Sklad - nikogar tam, moral bi biti Sefek
+- prebivališča, delavnice
+- gobje farme
+- tempelj Glasnega Gozóga, Prvega Barda (Gibov tempelj)
+
+</details>
