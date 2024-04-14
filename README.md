@@ -148,7 +148,7 @@ Altšpijk:
 Dva dni bomo počivali. Medtem off time dejavnosti. 
 - sefek je mrtu, povedat je treba da oni prevzemajo (stolp Abymbra biznis) 
 - templ aktivirat (Altpsijk) za poroke, pogrebe, birme 
-- 
+- deal s hagom, en kup potionov kupil in en kup sestavin. 
 
 
 
